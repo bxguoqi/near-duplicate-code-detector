@@ -1,3 +1,5 @@
+# update the .netCore to 3.1
+# Original Readme：
 # Near-Duplicate Code Detector
 
 This cross-platform sample tool detects exact and near duplicates of code maintained by the [Deep Program Understanding](https://www.microsoft.com/en-us/research/project/program/) group in Microsoft Research, Cambridge, UK. It has been created for the purpose of deduplicating code corpora for research purposes.
