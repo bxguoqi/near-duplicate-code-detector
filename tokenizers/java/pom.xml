@@ -8,6 +8,7 @@
     <!-- The name of this project (actually, the name of the artifact, which is the thing that this project produces. A jar in this case.) -->
     <artifactId>javatokenizer</artifactId>
     <!-- The version of this project. SNAPSHOT means "we're still working on it" -->
+
     <version>1.0-SNAPSHOT</version>
     
     <properties>
@@ -37,4 +38,36 @@
             <version>2.8.5</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!--情景二，使打包的jar包含lib文件夹中的本地jar-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>javatokenizer.Extractor</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.jolira</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <version>1.4.4</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <attachToBuild>true</attachToBuild>
+                            <classifier>onejar</classifier>
+                        </configuration>
+                        <goals>
+                            <goal>one-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
