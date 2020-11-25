@@ -22,7 +22,7 @@ def read_gz_file(path):
                 yield line
     else:
         print('the path [{}] is not exist!'.format(path))
-def comp2dicts():
+def comp2dicts(filename,tokens):
     ''''''
     pass
 def main():
@@ -68,7 +68,7 @@ def main():
     print(size,begin,end)
 
     # compare the (begin,end] part to (begin,size] part
-    dicts = []
+    dicts = {}
     con = read_gz_file(file_path)
     if getattr(con, '__iter__', None):
         for idx,line in enumerate(con):
@@ -77,22 +77,14 @@ def main():
             data = json.loads(line)
             filename = data.get('filename')
             tokens = data.get('tokens')
-            comp2dicts(filename,tokens)
-            if idx <=end:
-                print(idx)
-                continue
-            else:
-                continue
             t_dict = {}
             for token in tokens:
                 t_dict[token] = t_dict.get(token, 0)+1
             t_set = set(t_dict.keys())
-            print(t_set)
-            print(t_dict)
+            comp2dicts(dicts,filename,t_dict)
+            if idx <=end:
+                dicts[filename] = t_dict
 
 
 if __name__ == "__main__":
-    # di = {}
-    # di.get(1)
-
     main()
